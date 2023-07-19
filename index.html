@@ -26,12 +26,16 @@
 
       <div class="">
 
-        <p>P4$5W0rD!</p>
+
+        <h3 id="target"></h3>
 
         <label for="charLength" class="form-label">Character Length</label>
-        <input type="range" class="form-range" id="charLength">
+        <span id="theLength"></span>
+        <input type="range" 
+               class="form-range"  
+              id="charLength"
+              value="5" min="1" max="100" >
 
-        <form>
           
           <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="upperCase">
@@ -65,9 +69,12 @@
             <p>Strength</p>
           </div>
 
-
-        <button type="submit" class="btn btn-success col-12">Generate</button>
-        </form>
+        <button type="" 
+                class="btn btn-success col-12"
+                id="gen"
+                onClick="generatePassword()"
+                >Generate
+        </button>
         
       </div>
       
