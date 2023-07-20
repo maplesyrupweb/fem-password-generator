@@ -26,11 +26,24 @@
 
       <div class="">
 
+        <div class="password-text">
+          <div class="copy-icon">
+              <span id="copy-password">Copy
+                  <img src="https://i.imgur.com/zHgKDpN.png" alt="" />
+              </span>
+          </div>
+          <div class="quote">
+              <!-- random generated password to be copied -->
+              <p id="password-text">Generate a password
+              </p>
+              
+          </div>
+          
+      </div>
+
 
         <h3 id="target"></h3>
 
-        <p id="myText">Try harder</p>
-        <button class="btn" onclick="copyContent()">Copy me</button>
         
 
         <label for="charLength" class="form-label">Character Length</label>
@@ -38,7 +51,7 @@
         <input type="range" 
                class="form-range"  
               id="charLength"
-              value="5" min="1" max="100" >
+              value="6" min="6" max="30" >
 
           
           <div class="form-check">
@@ -81,6 +94,8 @@
                 >Generate
         </button>
         
+        
+
       </div>
       
       

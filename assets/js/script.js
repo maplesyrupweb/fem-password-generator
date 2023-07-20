@@ -1,5 +1,7 @@
-console.log("hello world");
+let quoteText = document.querySelector('#password-text');
 
+let handleCopyClick = document.querySelector('#copy-password');
+        
 
 function generatePassword() {
 
@@ -17,15 +19,26 @@ function generatePassword() {
         characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     console.log("The answer is: " + result);
-    document.getElementById("target").innerHTML = result   
+    document.getElementById("password-text").innerHTML = result   
 }
 
-let text = document.getElementById('myText').innerHTML;
-  const copyContent = async () => {
-    try {
-      await navigator.clipboard.writeText(text);
-      console.log("The copied text is: " + text);
-    } catch (error) {
-      console.error('Issue with copy to clipboard: ', error);
-    }
-  }
+// let text = document.getElementById('target').innerHTML;
+// // let text = document.getElementById('myText').innerHTML;
+//   const copyContent = async () => {
+//     try {
+//       await navigator.clipboard.writeText(text);
+//       console.log("The copied text is: " + text);
+//     } catch (error) {
+//       console.error('Issue with copy to clipboard: ', error);
+//     }
+//   }
+
+  handleCopyClick.addEventListener('click', () => {
+    let text = quoteText.textContent;
+    
+    navigator.clipboard.writeText(`${text}`);
+
+    console.log(text);
+    alert(`Password copied to clipboard. The password is: ${text}`);
+});
+
