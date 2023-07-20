@@ -22,16 +22,6 @@ function generatePassword() {
     document.getElementById("password-text").innerHTML = result   
 }
 
-// let text = document.getElementById('target').innerHTML;
-// // let text = document.getElementById('myText').innerHTML;
-//   const copyContent = async () => {
-//     try {
-//       await navigator.clipboard.writeText(text);
-//       console.log("The copied text is: " + text);
-//     } catch (error) {
-//       console.error('Issue with copy to clipboard: ', error);
-//     }
-//   }
 
   handleCopyClick.addEventListener('click', () => {
     let text = quoteText.textContent;
@@ -42,3 +32,12 @@ function generatePassword() {
     alert(`Password copied to clipboard. The password is: ${text}`);
 });
 
+var elem = document.querySelector('input[type="range"]');
+
+var rangeValue = function(){
+  var newValue = elem.value;
+  var target = document.querySelector('.value');
+  target.innerHTML = newValue;
+}
+
+elem.addEventListener("input", rangeValue);
