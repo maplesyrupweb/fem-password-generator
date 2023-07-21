@@ -23,7 +23,9 @@ function generatePassword() {
         characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     console.log("The answer is: " + result);
-    document.getElementById("password-text").innerHTML = result   
+    document.getElementById("password-text").innerHTML = result;
+    
+    checkpassword(result);
 }
 
 
@@ -169,5 +171,8 @@ function checkpassword(password) {
       strengthText.innerHTML = "Strong";
       break;
   }
+
+  console.log("the password strength of " + password + " is: " + strengthText.innerHTML);
+
 }
 
