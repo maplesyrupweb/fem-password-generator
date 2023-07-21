@@ -15,6 +15,7 @@ function generatePassword() {
     document.getElementById("theLength").innerHTML = length;
 
     const characters = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = '0123456789';
     let result = ' ';
     const charactersLength = characters.length;
     for(let i = 0; i < length; i++) {
@@ -99,4 +100,74 @@ symbolsCheckBox.addEventListener('change', function() {
 
 
 
+
+var code = document.getElementById("password");
+var strengthbar = document.getElementById("meter");
+var strengthText = document.getElementById("strengthText");
+
+/**
+ * Event Listener for getting password strength as you type a password
+ */
+
+code.addEventListener("keyup", function() {
+  checkpassword(code.value);
+  console.log(code.value);
+});
+
+/**
+ * Assign the password strength
+ * @param {*} password 
+ */
+
+function checkpassword(password) {
+  var strength = 0;
+  //contains lowercase letter
+  if (password.match(/[a-z]+/)) {
+    strength += 1
+   
+  }
+  //contains uppercase letter
+  if (password.match(/[A-Z]+/)) {
+    strength += 1;
+   
+  }
+  //contains a number
+  if (password.match(/[0-9]+/)) {
+    strength += 1;
+   
+  }
+  //contains a symbol
+  if (password.match(/[$@#&!]+/)) {
+    strength += 1;
+  }
+
+  console.log("the strength is: " + strength);
+
+  switch (strength) {
+    case 0:
+      strengthbar.value = 0;
+      strengthText.innerHTML = "Weak";
+      break;
+
+    case 1:
+      strengthbar.value = 25;
+      strengthText.innerHTML = "Weak";
+      break;
+
+    case 2:
+      strengthbar.value = 50;
+      strengthText.innerHTML = "OK";
+      break;
+
+    case 3:
+      strengthbar.value = 75;
+      strengthText.innerHTML = "Good";
+      break;
+
+    case 4:
+      strengthbar.value = 100;
+      strengthText.innerHTML = "Strong";
+      break;
+  }
+}
 
