@@ -75,3 +75,27 @@ html, body {
     visibility: visible;
     opacity: 1;
   }
+
+  .password-text {
+    background: var(--black1);
+  }
+
+  .passwordForm {
+    background: var(--black1);
+    // padding: 50px;
+    // margin: 20px
+  }
+
+  .passwordStrength {
+    padding: 20px;
+    margin: 20px;
+    background: var(--black2);
+  }
+
+  #charLength {
+    padding: 5px 45px 5px 45px; 
+  }
+
+  .checkboxes {
+   padding: 5px 0px 0px 45px; 
+  }

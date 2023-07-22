@@ -1,6 +1,13 @@
 let quoteText = document.querySelector('#password-text');
 let handleCopyClick = document.querySelector('#copy-password');
-        
+
+const CHARACTER_SETS = {
+    uppercase: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 26],
+    lowercase: ['abcdefghijklmnopqrstuvwxyz', 26],
+    numbers: ['1234567890', 10],
+    symbols: ['!@#$%^&*()', 10],
+  }
+  
 
 /**
  * Generate a password
@@ -12,7 +19,7 @@ function generatePassword() {
 
     console.log(length);
 
-    document.getElementById("theLength").innerHTML = length;
+    // document.getElementById("theLength").innerHTML = length;
 
     const characters = 'abcdefghijklmnopqrstuvwxyz';
     const numbers = '0123456789';
@@ -111,10 +118,10 @@ var strengthText = document.getElementById("strengthText");
  * Event Listener for getting password strength as you type a password
  */
 
-code.addEventListener("keyup", function() {
-  checkpassword(code.value);
-  console.log(code.value);
-});
+// code.addEventListener("keyup", function() {
+//   checkpassword(code.value);
+//   console.log(code.value);
+// });
 
 /**
  * Assign the password strength
