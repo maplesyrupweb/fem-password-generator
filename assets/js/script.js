@@ -15,7 +15,7 @@ const CHARACTER_SETS = {
     uppercase: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 26],
     lowercase: ['abcdefghijklmnopqrstuvwxyz', 26],
     numbers: ['1234567890', 10],
-    symbols: ['!@#$%^&*()', 10],
+    symbols: ['!@#$%^&*()', 10]
   }
   
 //------------------------------------------------------//
@@ -25,6 +25,7 @@ const CHARACTER_SETS = {
 
 function generateRandomPassword() {
   
+  console.log("//------------------------------------------------------//");
   validateInput();
 
 
@@ -66,58 +67,21 @@ function generateRandomPassword() {
       }
     }
           
-      
-      
       // checkpassword(generateRandomPassword);
 
-      // console.log("the strength is: " + strength)
 
-      const strength = calcStrength(length, charPool);
+    const strength = calcStrength(length, charPool);
     console.log("*** strength is " + strength);
-    console.log("*** lengthSlider.value " + length);
+    console.log("*** Password length is: " + length);
     console.log("*** charPool is " + charPool);
     
     styleMeter(strength);
 
-    //uncommenting below will output the entire generateRandomPassword function
-    // passwordText.innerHTML = generateRandomPassword;
-  console.log("end of generate password function");
+    console.log("end of generate password function");
+    console.log("//------------------------------------------------------//");
+
   
  }
- 
-
-//  function generateRandomPassword() {
-  
-//   validateInput();
-//   let length = document.getElementById("charLength").value;
-
-//       console.log(length);
-
-//       // document.getElementById("theLength").innerHTML = length;
-
-//       const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()';
-      
-//       let result = '';
-//       const charactersLength = characters.length;
-//       for(let i = 0; i < length; i++) {
-//           result += 
-//           characters.charAt(Math.floor(Math.random() * charactersLength));
-//       }
-//       console.log("The answer is: " + result);
-//       document.getElementById("password-text").innerHTML = result;
-      
-//       const strength = checkpassword(result);
-
-//       console.log("the strength is: " + strength)
-      
-
-
-      
- 
-//  }
-
-
-
 
 //------------------------------------------------------//
 //           Copy the password to clipboard             //
@@ -195,81 +159,80 @@ symbolsCheckBox.addEventListener('change', function() {
   }
 });
 
-
-
-
-
-
-
 //------------------------------------------------------//
 //          Checkbox password strength                  // 
 //------------------------------------------------------//
 
-function checkpassword(password) {
-  var strength = 0;
-  var strenghArray = [];
+// function checkpassword(password) {
+//   var strength = 0;
+//   var strenghArray = [];
   
-  //contains lowercase letter
-  if (password.match(/[a-z]+/)) {
-    strength += 1
+//   //contains lowercase letter
+//   if (password.match(/[a-z]+/)) {
+//     strength += 1
    
-  }
-  //contains uppercase letter
-  if (password.match(/[A-Z]+/)) {
-    strength += 1;
+//   }
+//   //contains uppercase letter
+//   if (password.match(/[A-Z]+/)) {
+//     strength += 1;
    
-  }
-  //contains a number
-  if (password.match(/[0-9]+/)) {
-    strength += 1;
+//   }
+//   //contains a number
+//   if (password.match(/[0-9]+/)) {
+//     strength += 1;
    
-  }
-  //contains a symbol
-  if (password.match(/[$@#&!]+/)) {
-    strength += 1;
-  }
+//   }
+//   //contains a symbol
+//   if (password.match(/[$@#&!]+/)) {
+//     strength += 1;
+//   }
 
-  console.log("the strength is: " + strength);
+//   console.log("the strength is: " + strength);
 
-  if (strength == 1) {
-      strengthbar.value = 25;
-      strengthbar.value = 1;
-      strenghArray = ["Too Weak!!!", 1];
-  }
-  else if (strength == 2) {
-      strengthbar.value = 50;
-      strenghArray = ["Weak!!!", 2];
-  }
-  else if (strength == 3) {
-    strengthbar.value = 75
-    strenghArray = ["Medium",3];
-}
-else if (strength == 4) {
-  strengthbar.value = 100
-    strenghArray = ["Strong",4];
-}
-else {
-  alert("error");
-}
+//   if (strength == 1) {
+//       strengthbar.value = 25;
+//       strengthbar.value = 1;
+//       strenghArray = ["Too Weak!!!", 1];
+//   }
+//   else if (strength == 2) {
+//       strengthbar.value = 50;
+//       strenghArray = ["Weak!!!", 2];
+//   }
+//   else if (strength == 3) {
+//     strengthbar.value = 75
+//     strenghArray = ["Medium",3];
+// }
+// else if (strength == 4) {
+//   strengthbar.value = 100
+//     strenghArray = ["Strong",4];
+// }
+// else {
+//   alert("error");
+// }
   
-  console.log("the password strength of " + password + " is: " + 
-  strengthText.innerHTML);
-  styleMeter(strenghArray);
-  console.log("do i get called");
-  return strenghArray;
+//   console.log("the password strength of " + password + " is: " + 
+//   strengthText.innerHTML);
+//   styleMeter(strenghArray);
+//   console.log("do i get called");
+//   return strenghArray;
 
-}
+// }
+
 
 
 
 
 //------------------------------------------------------//
-//---------------Validate checkbox input----------------//
+//          Validate checkbox input                     // 
 //------------------------------------------------------//
 
-//The Array.from() method returns an array from any iterable object.
 
-// every() returns true if all elements in an array pass a test (provided as a function).
+
+//The Array.from() method returns an array from any 
+//iterable object.
+
+// every() returns true if all elements in an array 
+// pass a test (provided as a function).
 
 const validateInput = () => {
   // At least one box is checked
@@ -285,6 +248,10 @@ const validateInput = () => {
   }
 }
 
+//------------------------------------------------------//
+//          Fill the bars with colors                   // 
+//------------------------------------------------------//
+
 // Fill in specified meter bars with the provided color
 const styleBars = ([...barElements], color) => {
   barElements.forEach(bar => {
@@ -292,6 +259,11 @@ const styleBars = ([...barElements], color) => {
     bar.style.borderColor = color;
   });
 }
+
+
+//------------------------------------------------------//
+//          Display Password Strength                   // 
+//------------------------------------------------------//
 
 
 // Display text description of password strength and
@@ -329,6 +301,11 @@ const resetBarStyles = () => {
     bar.style.borderColor = 'hsl(252, 11%, 91%)';
   });
 }
+
+//------------------------------------------------------//
+//          Calculate Password Strength                 // 
+//------------------------------------------------------//
+
 
 // Calculate password entropy to determine strength
 // Return an array containing
