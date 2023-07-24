@@ -1,5 +1,6 @@
 // let passwordText = document.querySelector('#password-text');
 let passwordText = document.getElementById('passwordText');
+let length = document.getElementById("charLength").value;
 let handleCopyClick = document.querySelector('#copy-password');
 const checkBoxes = document.querySelectorAll('input[type=checkbox]');
 const strengthRatingBars = document.querySelectorAll('.bar');
@@ -22,10 +23,10 @@ const CHARACTER_SETS = {
 //------------------------------------------------------//
 
 
-function generatePassword() {
+function generateRandomPassword() {
   
   validateInput();
-  let length = document.getElementById("charLength").value;
+
 
       console.log(length);
 
@@ -61,13 +62,13 @@ function generatePassword() {
         
         generatedPassword += randChar;
         console.log("generatedPassword is " + generatedPassword);
-        // document.getElementById("passwordText").innerHTML = generatePassword;
+        document.getElementById("passwordText").innerHTML = generatedPassword;
       }
     }
           
       
       
-      // checkpassword(generatePassword);
+      // checkpassword(generateRandomPassword);
 
       // console.log("the strength is: " + strength)
 
@@ -78,14 +79,14 @@ function generatePassword() {
     
     styleMeter(strength);
 
-    //uncommenting below will output the entire generatePassword function
-    // passwordText.innerHTML = generatePassword;
+    //uncommenting below will output the entire generateRandomPassword function
+    // passwordText.innerHTML = generateRandomPassword;
   console.log("end of generate password function");
   
  }
  
 
-//  function generatePassword() {
+//  function generateRandomPassword() {
   
 //   validateInput();
 //   let length = document.getElementById("charLength").value;
