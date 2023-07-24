@@ -1,4 +1,5 @@
-let quoteText = document.querySelector('#password-text');
+// let passwordText = document.querySelector('#password-text');
+let passwordText = document.getElementById('passwordText');
 let handleCopyClick = document.querySelector('#copy-password');
 const checkBoxes = document.querySelectorAll('input[type=checkbox]');
 const strengthRatingBars = document.querySelectorAll('.bar');
@@ -22,7 +23,6 @@ const CHARACTER_SETS = {
 
 
 function generatePassword() {
-
   
   validateInput();
   let length = document.getElementById("charLength").value;
@@ -32,29 +32,89 @@ function generatePassword() {
       // document.getElementById("theLength").innerHTML = length;
 
   
- 
+      let generatedPassword = '';
+      let includedSets = [];
+      let charPool = 0;
      
-      const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()';
-      
-      let result = ' ';
-      const charactersLength = characters.length;
-      for(let i = 0; i < length; i++) {
-          result += 
-          characters.charAt(Math.floor(Math.random() * charactersLength));
+      checkBoxes.forEach(box => {
+        if(box.checked) {
+          includedSets.push(CHARACTER_SETS[box.value][0]);
+          console.log("included sets: " + includedSets );
+          charPool += CHARACTER_SETS[box.value][1];
+          console.log("charPool: " + charPool );
+        }
+      });
+
+      console.log("checkBoxes: " + checkBoxes.length);
+
+      if (includedSets) {
+      for(let i=0; i<length; i++) {
+        const randSetIndex = Math.floor(Math.random() * includedSets.length);
+        console.log("randSetIndex is " + randSetIndex);
+        const randSet = includedSets[randSetIndex];
+        console.log("randSet is " + randSet);
+
+        const randCharIndex = Math.floor(Math.random() * randSet.length);
+        console.log("randCharIndex is " + randCharIndex);
+        const randChar = randSet[randCharIndex];
+        console.log("randChar is " + randChar);
+        
+        generatedPassword += randChar;
+        console.log("generatedPassword is " + generatedPassword);
+        // document.getElementById("passwordText").innerHTML = generatePassword;
       }
-      console.log("The answer is: " + result);
-      document.getElementById("password-text").innerHTML = result;
+    }
+          
       
-      const strength = checkpassword(result);
+      
+      // checkpassword(generatePassword);
 
-      console.log("the strength is: " + strength)
-      
-      // const strength = calcStrength(100, 100);
+      // console.log("the strength is: " + strength)
 
-      
- 
+      const strength = calcStrength(length, charPool);
+    console.log("*** strength is " + strength);
+    console.log("*** lengthSlider.value " + length);
+    console.log("*** charPool is " + charPool);
+    
+    styleMeter(strength);
+
+    //uncommenting below will output the entire generatePassword function
+    // passwordText.innerHTML = generatePassword;
+  console.log("end of generate password function");
+  
  }
  
+
+//  function generatePassword() {
+  
+//   validateInput();
+//   let length = document.getElementById("charLength").value;
+
+//       console.log(length);
+
+//       // document.getElementById("theLength").innerHTML = length;
+
+//       const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()';
+      
+//       let result = '';
+//       const charactersLength = characters.length;
+//       for(let i = 0; i < length; i++) {
+//           result += 
+//           characters.charAt(Math.floor(Math.random() * charactersLength));
+//       }
+//       console.log("The answer is: " + result);
+//       document.getElementById("password-text").innerHTML = result;
+      
+//       const strength = checkpassword(result);
+
+//       console.log("the strength is: " + strength)
+      
+
+
+      
+ 
+//  }
+
 
 
 
@@ -65,7 +125,7 @@ function generatePassword() {
 
 
   handleCopyClick.addEventListener('click', () => {
-    let text = quoteText.textContent;
+    let text = passwordText.textContent;
     
     navigator.clipboard.writeText(`${text}`);
 
@@ -198,6 +258,8 @@ else {
   return strenghArray;
 
 }
+
+
 
 
 //------------------------------------------------------//
