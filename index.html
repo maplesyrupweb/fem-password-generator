@@ -19,7 +19,7 @@
 
 
   <!-- Inner row, half the width and height, centered, blue border -->
-  <div class=" app row text-center d-flex align-items-center" style="overflow:hidden; width:50vw; height:50vh; border: 1px solid blue">
+  <div class="app row text-center d-flex align-items-center" style="overflow:hidden; width:50vw; height:50vh; border: 1px solid blue">
   
   
     <div class="container">
@@ -87,11 +87,23 @@
           </div>
         </div>
           
-        <form class="passwordStrength">          
-          <span id="strengthText">Strength</span>
-          <progress max="100" value="0" id="meter"></progress>
-        </form>
-    
+
+        <div class="strength-box">
+          <span class="strength-label">Strength</span>
+          <div class="strength-rating">
+            <span id="strengthText" class="strength-rating-text"></span>
+            <progress max="100" value="0" id="meter"></progress>
+            <div class="strength-rating-bars">
+              <div class="row justify-content-center">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
       
     
 
@@ -101,8 +113,17 @@
                 id="gen"
                 onClick="generatePassword()"
                 >Generate
-        </button>
         
+        <svg 
+        width="24" 
+        height="24" 
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path 
+          d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
+      </svg>
+    </button>  
         
 
       </div>

@@ -1,5 +1,13 @@
 let quoteText = document.querySelector('#password-text');
 let handleCopyClick = document.querySelector('#copy-password');
+const checkBoxes = document.querySelectorAll('input[type=checkbox]');
+const strengthRatingBars = document.querySelectorAll('.bar');
+
+var code = document.getElementById("password");
+var strengthbar = document.getElementById("meter");
+// var strengthText = document.getElementById("strengthText");
+
+const strengthDescription = document.querySelector('.strength-rating-text');
 
 const CHARACTER_SETS = {
     uppercase: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 26],
@@ -8,37 +16,53 @@ const CHARACTER_SETS = {
     symbols: ['!@#$%^&*()', 10],
   }
   
+//------------------------------------------------------//
+//           Generate random password                   //
+//------------------------------------------------------//
 
-/**
- * Generate a password
- */
 
 function generatePassword() {
 
- let length = document.getElementById("charLength").value;
+  
+  validateInput();
+  let length = document.getElementById("charLength").value;
 
-    console.log(length);
+      console.log(length);
 
-    // document.getElementById("theLength").innerHTML = length;
+      // document.getElementById("theLength").innerHTML = length;
 
-    const characters = 'abcdefghijklmnopqrstuvwxyz';
-    const numbers = '0123456789';
-    let result = ' ';
-    const charactersLength = characters.length;
-    for(let i = 0; i < length; i++) {
-        result += 
-        characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    console.log("The answer is: " + result);
-    document.getElementById("password-text").innerHTML = result;
-    
-    checkpassword(result);
-}
+  
+ 
+     
+      const characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()';
+      
+      let result = ' ';
+      const charactersLength = characters.length;
+      for(let i = 0; i < length; i++) {
+          result += 
+          characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      console.log("The answer is: " + result);
+      document.getElementById("password-text").innerHTML = result;
+      
+      const strength = checkpassword(result);
+
+      console.log("the strength is: " + strength)
+      
+      // const strength = calcStrength(100, 100);
+
+      
+ 
+ }
+ 
 
 
-/**
- * Copy text to clipboard
- */
+
+//------------------------------------------------------//
+//           Copy the password to clipboard             //
+//------------------------------------------------------//
+
+
 
   handleCopyClick.addEventListener('click', () => {
     let text = quoteText.textContent;
@@ -50,9 +74,9 @@ function generatePassword() {
 });
 
 
-/**
- * Show the input range when using
- */
+//------------------------------------------------------//
+//          Show the input range when using slider      // 
+//------------------------------------------------------//
 
 var elem = document.querySelector('input[type="range"]');
 
@@ -64,6 +88,10 @@ var rangeValue = function(){
 
 elem.addEventListener("input", rangeValue);
 
+
+//------------------------------------------------------//
+//          Checkbox event listeners                    // 
+//------------------------------------------------------//
 
 
 let numberCheckBox = document.querySelector("input[id=numbers]");
@@ -110,26 +138,16 @@ symbolsCheckBox.addEventListener('change', function() {
 
 
 
-var code = document.getElementById("password");
-var strengthbar = document.getElementById("meter");
-var strengthText = document.getElementById("strengthText");
 
-/**
- * Event Listener for getting password strength as you type a password
- */
 
-// code.addEventListener("keyup", function() {
-//   checkpassword(code.value);
-//   console.log(code.value);
-// });
-
-/**
- * Assign the password strength
- * @param {*} password 
- */
+//------------------------------------------------------//
+//          Checkbox password strength                  // 
+//------------------------------------------------------//
 
 function checkpassword(password) {
   var strength = 0;
+  var strenghArray = [];
+  
   //contains lowercase letter
   if (password.match(/[a-z]+/)) {
     strength += 1
@@ -152,34 +170,117 @@ function checkpassword(password) {
 
   console.log("the strength is: " + strength);
 
-  switch (strength) {
-    case 0:
-      strengthbar.value = 0;
-      strengthText.innerHTML = "Weak";
-      break;
-
-    case 1:
+  if (strength == 1) {
       strengthbar.value = 25;
-      strengthText.innerHTML = "Weak";
-      break;
-
-    case 2:
-      strengthbar.value = 50;
-      strengthText.innerHTML = "OK";
-      break;
-
-    case 3:
-      strengthbar.value = 75;
-      strengthText.innerHTML = "Good";
-      break;
-
-    case 4:
-      strengthbar.value = 100;
-      strengthText.innerHTML = "Strong";
-      break;
+      strengthbar.value = 1;
+      strenghArray = ["Too Weak!!!", 1];
   }
-
-  console.log("the password strength of " + password + " is: " + strengthText.innerHTML);
+  else if (strength == 2) {
+      strengthbar.value = 50;
+      strenghArray = ["Weak!!!", 2];
+  }
+  else if (strength == 3) {
+    strengthbar.value = 75
+    strenghArray = ["Medium",3];
+}
+else if (strength == 4) {
+  strengthbar.value = 100
+    strenghArray = ["Strong",4];
+}
+else {
+  alert("error");
+}
+  
+  console.log("the password strength of " + password + " is: " + 
+  strengthText.innerHTML);
+  styleMeter(strenghArray);
+  console.log("do i get called");
+  return strenghArray;
 
 }
 
+
+//------------------------------------------------------//
+//---------------Validate checkbox input----------------//
+//------------------------------------------------------//
+
+//The Array.from() method returns an array from any iterable object.
+
+// every() returns true if all elements in an array pass a test (provided as a function).
+
+const validateInput = () => {
+  // At least one box is checked
+  if(Array.from(checkBoxes).every(box => box.checked === false)) {
+    // throw new Error('Make sure to check at least one box');
+    console.log("check at least one checkbox");
+
+   
+
+  }
+  else {
+    console.log("checkboxes checked)");
+  }
+}
+
+// Fill in specified meter bars with the provided color
+const styleBars = ([...barElements], color) => {
+  barElements.forEach(bar => {
+    bar.style.backgroundColor = color;
+    bar.style.borderColor = color;
+  });
+}
+
+
+// Display text description of password strength and
+// fill in the appropriate meter bars
+const styleMeter = (rating) => {
+  const text = rating[0];
+  console.log("the text is: " + text);
+  const numBars = rating[1];
+  console.log("the numBars is: " + numBars);
+  const barsToFill = Array.from(strengthRatingBars).slice(0, numBars);
+  
+  resetBarStyles();
+
+  strengthDescription.innerHTML = text;
+
+  switch(numBars) {
+    case 1:
+      return styleBars(barsToFill, 'hsl(0, 91%, 63%)');
+    case 2:
+      return styleBars(barsToFill, 'hsl(13, 95%, 66%)');
+    case 3:
+      return styleBars(barsToFill, 'hsl(42, 91%, 68%)');
+    case 4:
+      return styleBars(barsToFill, 'hsl(127, 100%, 82%');
+    default:
+      // throw new Error('Invalid value for numBars');
+      
+  }
+}
+
+// Remove colors applied to the strength meter
+const resetBarStyles = () => {
+  strengthRatingBars.forEach(bar => {
+    bar.style.backgroundColor = 'transparent';
+    bar.style.borderColor = 'hsl(252, 11%, 91%)';
+  });
+}
+
+// Calculate password entropy to determine strength
+// Return an array containing
+// the password strength description to display and the number
+// of bars in the meter to be filled
+const calcStrength = (passwordLength, charPoolSize) => {
+  const strength = passwordLength * Math.log2(charPoolSize);
+
+  if(strength < 25) {
+    return ['Too Weak!', 1];
+  } else if (strength >= 25 && strength < 50) {
+    return ['Weak', 2];
+  } else if (strength >= 50 && strength < 75) {
+    return ['Medium', 3];
+  } else {
+    return ['Strong', 4];
+  }
+}
