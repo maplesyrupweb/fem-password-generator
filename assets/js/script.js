@@ -1,4 +1,3 @@
-// let passwordText = document.querySelector('#password-text');
 let passwordText = document.getElementById('passwordText');
 let length = document.getElementById("charLength").value;
 let handleCopyClick = document.querySelector('#copy-password');
@@ -7,7 +6,6 @@ let strengthRatingBars = document.querySelectorAll('.bar');
 let numberCheckBox = document.querySelector("input[id=numbers]");
 let code = document.getElementById("password");
 let strengthbar = document.getElementById("meter");
-// var strengthText = document.getElementById("strengthText");
 let passwordForm = document.getElementById("passwordForm");
 let strengthDescription = document.querySelector('.strength-rating-text');
 let elem = document.querySelector('input[type="range"]');
@@ -31,17 +29,15 @@ const CHARACTER_SETS = {
 const generateRandomPassword = (event) => {
   event.preventDefault();
 
-  console.log("//------------------------------------------------------//");
-  
-  
+  console.log("//-----------Begin-------------//");  
+
+  let numOfCheckedBoxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
   let theLength = elem.value;
   let errorFree =  validateInput();
   if (errorFree) {
     errorMessage.innerHTML  = "";
-    console.log(length);
 
-    console.log("*** the length of random password is: " + theLength + "")
-    // document.getElementById("theLength").innerHTML = length;
+    console.log("*** the length of random password is: " + theLength)
 
 
     let generatedPassword = '';
@@ -56,44 +52,42 @@ const generateRandomPassword = (event) => {
         console.log("charPool: " + charPool );
       }
     });
+    console.log("Number of checked checkBoxes: " + numOfCheckedBoxes );
 
-    console.log("checkBoxes: " + checkBoxes.length);
-
+    // If there are checkboxes chechked for the password options
     if (includedSets) {
     for(let i=0; i<theLength; i++) {
       const randSetIndex = Math.floor(Math.random() * includedSets.length);
-      console.log("randSetIndex is " + randSetIndex);
+      // console.log("randSetIndex is " + randSetIndex);
       const randSet = includedSets[randSetIndex];
-      console.log("randSet is " + randSet);
+      // console.log("randSet is " + randSet);
 
       const randCharIndex = Math.floor(Math.random() * randSet.length);
-      console.log("randCharIndex is " + randCharIndex);
+      // console.log("randCharIndex is " + randCharIndex);
       const randChar = randSet[randCharIndex];
-      console.log("randChar is " + randChar);
+      // console.log("randChar is " + randChar);
       
+      // add the random character to the password string
       generatedPassword += randChar;
-      console.log("generatedPassword is " + generatedPassword);
+      // console.log("generatedPassword is " + generatedPassword);
       document.getElementById("passwordText").innerHTML = generatedPassword;
     }
   }
         
-    // checkpassword(generateRandomPassword);
+    const strength = calcStrength(theLength, charPool);
+    console.log("*** strength is " + strength);
+    console.log("*** Password length is: " + theLength);
+    console.log("*** charPool is " + charPool);
+    
+    styleMeter(strength);
+
+    console.log("end of generate password function");
+    console.log("//-----------End--------------//");
 
 
-  const strength = calcStrength(length, charPool);
-  console.log("*** strength is " + strength);
-  console.log("*** Password length is: " + length);
-  console.log("*** charPool is " + charPool);
-  
-  styleMeter(strength);
-
-  console.log("end of generate password function");
-  console.log("//------------------------------------------------------//");
-
-
-  }else {
-    errorMessage.innerHTML = "Check at least one check box";
-  }
+    }else {
+      errorMessage.innerHTML = "Check at least one check box";
+    }
 
     
 }
@@ -102,8 +96,6 @@ const generateRandomPassword = (event) => {
 //------------------------------------------------------//
 //           Copy the password to clipboard             //
 //------------------------------------------------------//
-
-
 
   handleCopyClick.addEventListener('click', () => {
     let text = passwordText.textContent;
@@ -131,8 +123,10 @@ elem.addEventListener("input", rangeValue);
 
 
 //------------------------------------------------------//
-//          Form event listeners                    // 
+//          Form event listeners                        // 
 //------------------------------------------------------//
+
+// The form
 
 if (passwordForm) {
   console.log("***** PasswordForm is not null");
@@ -140,7 +134,7 @@ if (passwordForm) {
 
 }
 
-
+// Number checkbox
 numberCheckBox.addEventListener('change', function() {
   if (this.checked) {
     console.log("Number Checkbox is checked..");
@@ -149,6 +143,7 @@ numberCheckBox.addEventListener('change', function() {
   }
 });
 
+// Uppercase characters checkbox
 let uppercaseCheckBox = document.querySelector("input[id=uppercase]");
 
 uppercaseCheckBox.addEventListener('change', function() {
@@ -159,6 +154,7 @@ uppercaseCheckBox.addEventListener('change', function() {
   }
 });
 
+// Lowercase characters checkbox
 let lowercaseCheckBox = document.querySelector("input[id=lowercase]");
 
 lowercaseCheckBox.addEventListener('change', function() {
@@ -169,6 +165,7 @@ lowercaseCheckBox.addEventListener('change', function() {
   }
 });
 
+// Symbol characters checkbox
 let symbolsCheckBox = document.querySelector("input[id=symbols]");
 
 symbolsCheckBox.addEventListener('change', function() {
@@ -199,11 +196,9 @@ const validateInput = () => {
     console.log("check at least one checkbox");
     return false;
 
-   
-
   }
   else {
-    console.log("checkboxes checked)");
+    console.log("Validate input: At least one checkbox is checked.");
     return true;
   }
 }
@@ -249,7 +244,7 @@ const styleMeter = (rating) => {
     case 4:
       return styleBars(barsToFill, 'hsl(127, 100%, 82%');
     default:
-      // throw new Error('Invalid value for numBars');
+      console.log("Error with password strength bars")
       
   }
 }
@@ -275,12 +270,17 @@ const calcStrength = (passwordLength, charPoolSize) => {
   const strength = passwordLength * Math.log2(charPoolSize);
 
   if(strength < 25) {
+    console.log("Too Weak!', 1]");
     return ['Too Weak!', 1];
+   
   } else if (strength >= 25 && strength < 50) {
+    console.log("['Weak', 2]");
     return ['Weak', 2];
   } else if (strength >= 50 && strength < 75) {
+    console.log("['Medium', 3]");
     return ['Medium', 3];
-  } else {
+  } else if (strength >= 75) {
+    console.log("['Strong', 4]");
     return ['Strong', 4];
   }
 }
