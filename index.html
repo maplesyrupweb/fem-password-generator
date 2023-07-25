@@ -23,10 +23,8 @@
   
   
     <div class="container">
-   
       <div class="password-text1">
         <div class="copy-icon">
-
           <div class="row">
             <div class="col">
               <p id="passwordText">Generate a password</p>
@@ -35,19 +33,15 @@
               <span id="copy-password">
                 <img src="./assets/images/icon-copy.svg" alt="Copy password">
               </span>
-
             </div>
           </div>
-
-            
         </div>
-        
       </div>
 
    
     
 
-      <div class="passwordForm">
+      <form class="" id="passwordForm">
 
         
         <div class="value">6</div>
@@ -85,6 +79,10 @@
               Include Symbols
             </label>
           </div>
+          
+          <div class="errorMessage" id="">
+            <span class="" id="checkBoxError"></span>
+          </div>
         </div>
           
 
@@ -107,7 +105,24 @@
       
     
 
-        <button type="" 
+        <button 
+                class="btn btn-primary col-12"
+                
+                type="submit"
+                >Generate
+        
+        <svg 
+        width="24" 
+        height="24" 
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path 
+          d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
+      </svg>
+    </button>  
+<!-- 
+    <button type="" 
                 class="btn btn-primary col-12"
                 
                 id="gen"
@@ -124,9 +139,10 @@
           d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
       </svg>
     </button>  
+         -->
         
 
-      </div>
+        </form>
       
       
     </div>

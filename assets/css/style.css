@@ -141,3 +141,7 @@ html, body {
   background: none;
   margin: 5px;
 }
+
+#checkBoxError {
+  color: var(--red);
+}

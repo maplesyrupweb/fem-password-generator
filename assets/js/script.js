@@ -4,12 +4,16 @@ let length = document.getElementById("charLength").value;
 let handleCopyClick = document.querySelector('#copy-password');
 const checkBoxes = document.querySelectorAll('input[type=checkbox]');
 const strengthRatingBars = document.querySelectorAll('.bar');
-
+let numberCheckBox = document.querySelector("input[id=numbers]");
 var code = document.getElementById("password");
 var strengthbar = document.getElementById("meter");
 // var strengthText = document.getElementById("strengthText");
-
+const passwordForm = document.getElementById("passwordForm");
 const strengthDescription = document.querySelector('.strength-rating-text');
+
+let errorMessage = document.getElementById("checkBoxError")
+
+console.log("passwordForm is: " + passwordForm);
 
 const CHARACTER_SETS = {
     uppercase: ['ABCDEFGHIJKLMNOPQRSTUVWXYZ', 26],
@@ -23,66 +27,75 @@ const CHARACTER_SETS = {
 //------------------------------------------------------//
 
 
-function generateRandomPassword() {
-  
+const generateRandomPassword = (event) => {
+  event.preventDefault();
+
   console.log("//------------------------------------------------------//");
-  validateInput();
-
-
-      console.log(length);
-
-      // document.getElementById("theLength").innerHTML = length;
-
   
-      let generatedPassword = '';
-      let includedSets = [];
-      let charPool = 0;
-     
-      checkBoxes.forEach(box => {
-        if(box.checked) {
-          includedSets.push(CHARACTER_SETS[box.value][0]);
-          console.log("included sets: " + includedSets );
-          charPool += CHARACTER_SETS[box.value][1];
-          console.log("charPool: " + charPool );
-        }
-      });
+  
+  let errorFree =  validateInput();
+  if (errorFree) {
+    errorMessage.innerHTML  = "";
+    console.log(length);
 
-      console.log("checkBoxes: " + checkBoxes.length);
+    // document.getElementById("theLength").innerHTML = length;
 
-      if (includedSets) {
-      for(let i=0; i<length; i++) {
-        const randSetIndex = Math.floor(Math.random() * includedSets.length);
-        console.log("randSetIndex is " + randSetIndex);
-        const randSet = includedSets[randSetIndex];
-        console.log("randSet is " + randSet);
 
-        const randCharIndex = Math.floor(Math.random() * randSet.length);
-        console.log("randCharIndex is " + randCharIndex);
-        const randChar = randSet[randCharIndex];
-        console.log("randChar is " + randChar);
-        
-        generatedPassword += randChar;
-        console.log("generatedPassword is " + generatedPassword);
-        document.getElementById("passwordText").innerHTML = generatedPassword;
+    let generatedPassword = '';
+    let includedSets = [];
+    let charPool = 0;
+   
+    checkBoxes.forEach(box => {
+      if(box.checked) {
+        includedSets.push(CHARACTER_SETS[box.value][0]);
+        console.log("included sets: " + includedSets );
+        charPool += CHARACTER_SETS[box.value][1];
+        console.log("charPool: " + charPool );
       }
+    });
+
+    console.log("checkBoxes: " + checkBoxes.length);
+
+    if (includedSets) {
+    for(let i=0; i<length; i++) {
+      const randSetIndex = Math.floor(Math.random() * includedSets.length);
+      console.log("randSetIndex is " + randSetIndex);
+      const randSet = includedSets[randSetIndex];
+      console.log("randSet is " + randSet);
+
+      const randCharIndex = Math.floor(Math.random() * randSet.length);
+      console.log("randCharIndex is " + randCharIndex);
+      const randChar = randSet[randCharIndex];
+      console.log("randChar is " + randChar);
+      
+      generatedPassword += randChar;
+      console.log("generatedPassword is " + generatedPassword);
+      document.getElementById("passwordText").innerHTML = generatedPassword;
     }
-          
-      // checkpassword(generateRandomPassword);
+  }
+        
+    // checkpassword(generateRandomPassword);
 
 
-    const strength = calcStrength(length, charPool);
-    console.log("*** strength is " + strength);
-    console.log("*** Password length is: " + length);
-    console.log("*** charPool is " + charPool);
-    
-    styleMeter(strength);
-
-    console.log("end of generate password function");
-    console.log("//------------------------------------------------------//");
-
+  const strength = calcStrength(length, charPool);
+  console.log("*** strength is " + strength);
+  console.log("*** Password length is: " + length);
+  console.log("*** charPool is " + charPool);
   
- }
+  styleMeter(strength);
 
+  console.log("end of generate password function");
+  console.log("//------------------------------------------------------//");
+
+
+  }else {
+    errorMessage.innerHTML = "Check at least one check box";
+  }
+
+    
+}
+  
+ 
 //------------------------------------------------------//
 //           Copy the password to clipboard             //
 //------------------------------------------------------//
@@ -115,11 +128,15 @@ elem.addEventListener("input", rangeValue);
 
 
 //------------------------------------------------------//
-//          Checkbox event listeners                    // 
+//          Form event listeners                    // 
 //------------------------------------------------------//
 
+if (passwordForm) {
+  console.log("***** PasswordForm is not null");
+  passwordForm.addEventListener('submit', generateRandomPassword);
 
-let numberCheckBox = document.querySelector("input[id=numbers]");
+}
+
 
 numberCheckBox.addEventListener('change', function() {
   if (this.checked) {
@@ -159,68 +176,6 @@ symbolsCheckBox.addEventListener('change', function() {
   }
 });
 
-//------------------------------------------------------//
-//          Checkbox password strength                  // 
-//------------------------------------------------------//
-
-// function checkpassword(password) {
-//   var strength = 0;
-//   var strenghArray = [];
-  
-//   //contains lowercase letter
-//   if (password.match(/[a-z]+/)) {
-//     strength += 1
-   
-//   }
-//   //contains uppercase letter
-//   if (password.match(/[A-Z]+/)) {
-//     strength += 1;
-   
-//   }
-//   //contains a number
-//   if (password.match(/[0-9]+/)) {
-//     strength += 1;
-   
-//   }
-//   //contains a symbol
-//   if (password.match(/[$@#&!]+/)) {
-//     strength += 1;
-//   }
-
-//   console.log("the strength is: " + strength);
-
-//   if (strength == 1) {
-//       strengthbar.value = 25;
-//       strengthbar.value = 1;
-//       strenghArray = ["Too Weak!!!", 1];
-//   }
-//   else if (strength == 2) {
-//       strengthbar.value = 50;
-//       strenghArray = ["Weak!!!", 2];
-//   }
-//   else if (strength == 3) {
-//     strengthbar.value = 75
-//     strenghArray = ["Medium",3];
-// }
-// else if (strength == 4) {
-//   strengthbar.value = 100
-//     strenghArray = ["Strong",4];
-// }
-// else {
-//   alert("error");
-// }
-  
-//   console.log("the password strength of " + password + " is: " + 
-//   strengthText.innerHTML);
-//   styleMeter(strenghArray);
-//   console.log("do i get called");
-//   return strenghArray;
-
-// }
-
-
-
-
 
 //------------------------------------------------------//
 //          Validate checkbox input                     // 
@@ -239,12 +194,14 @@ const validateInput = () => {
   if(Array.from(checkBoxes).every(box => box.checked === false)) {
     // throw new Error('Make sure to check at least one box');
     console.log("check at least one checkbox");
+    return false;
 
    
 
   }
   else {
     console.log("checkboxes checked)");
+    return true;
   }
 }
 
