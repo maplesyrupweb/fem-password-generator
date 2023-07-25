@@ -2,14 +2,15 @@
 let passwordText = document.getElementById('passwordText');
 let length = document.getElementById("charLength").value;
 let handleCopyClick = document.querySelector('#copy-password');
-const checkBoxes = document.querySelectorAll('input[type=checkbox]');
-const strengthRatingBars = document.querySelectorAll('.bar');
+let checkBoxes = document.querySelectorAll('input[type=checkbox]');
+let strengthRatingBars = document.querySelectorAll('.bar');
 let numberCheckBox = document.querySelector("input[id=numbers]");
-var code = document.getElementById("password");
-var strengthbar = document.getElementById("meter");
+let code = document.getElementById("password");
+let strengthbar = document.getElementById("meter");
 // var strengthText = document.getElementById("strengthText");
-const passwordForm = document.getElementById("passwordForm");
-const strengthDescription = document.querySelector('.strength-rating-text');
+let passwordForm = document.getElementById("passwordForm");
+let strengthDescription = document.querySelector('.strength-rating-text');
+let elem = document.querySelector('input[type="range"]');
 
 let errorMessage = document.getElementById("checkBoxError")
 
@@ -33,11 +34,13 @@ const generateRandomPassword = (event) => {
   console.log("//------------------------------------------------------//");
   
   
+  let theLength = elem.value;
   let errorFree =  validateInput();
   if (errorFree) {
     errorMessage.innerHTML  = "";
     console.log(length);
 
+    console.log("*** the length of random password is: " + theLength + "")
     // document.getElementById("theLength").innerHTML = length;
 
 
@@ -57,7 +60,7 @@ const generateRandomPassword = (event) => {
     console.log("checkBoxes: " + checkBoxes.length);
 
     if (includedSets) {
-    for(let i=0; i<length; i++) {
+    for(let i=0; i<theLength; i++) {
       const randSetIndex = Math.floor(Math.random() * includedSets.length);
       console.log("randSetIndex is " + randSetIndex);
       const randSet = includedSets[randSetIndex];
@@ -116,7 +119,7 @@ const generateRandomPassword = (event) => {
 //          Show the input range when using slider      // 
 //------------------------------------------------------//
 
-var elem = document.querySelector('input[type="range"]');
+
 
 var rangeValue = function(){
   var newValue = elem.value;
