@@ -59,7 +59,7 @@ html, body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--black1);
+    background: var(--black2);
     color: var(--light);
     
 }
@@ -68,9 +68,23 @@ html, body {
   max-width: 600px !important;
 }
 
+.row.justify-content-center {
+  padding: 10px;
+  margin: 10px;
+}
+
+.title{
+  color: var(--grey);
+}
+
 /********************************************/
 /*           Password Form                  */
 /********************************************/
+
+.charLengthRow {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
 
 .col.password {
   padding-top: 10px;
@@ -96,6 +110,11 @@ html, body {
     padding: 10px;
   }
   
+  input[type=checkbox]:checked  {
+    border-color: var(--green);
+    background-color: var(--green);
+  }
+  
 
   #charLength {
     padding: 5px 45px 5px 45px; 
@@ -111,6 +130,7 @@ html, body {
   
 .strength-rating-bars {
     gap: 0.8rem;
+    
   }
 
 .passwordStrength {
@@ -124,11 +144,9 @@ html, body {
   height: 2.8rem;
   border: 2px solid hsl(252, 11%, 91%);
   background: none;
-  margin: 5px;
+  margin: 1.5px;
 }
 
-.row.justify-content-center {
-  padding: 10px;
-  margin: 10px;
+.strength-box {
+  background-color: var(--black1);
 }
-
