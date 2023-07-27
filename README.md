@@ -2,7 +2,7 @@
 
 This is coding challenge from Front End Mentor
 
-<img width="1389" alt="password-generator" src="https://github.com/maplesyrupweb/fem-password-generator/assets/73809301/e089b80b-5899-42df-b8b1-b421dabbd474">
+<img width="1389" alt="password-generator" src="https://github.com/maplesyrupweb/fem-password-generator/assets/73809301/673c8f31-1005-4c3b-be9a-7ae9433ac47a">
 
 ## Features
 
