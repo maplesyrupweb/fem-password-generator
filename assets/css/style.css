@@ -1,5 +1,5 @@
 /********************************************/
-/*Color variales*/
+/*            Color variales                */
 /********************************************/
 
 
@@ -25,7 +25,7 @@
 }
 
 /********************************************/
-/*Button*/
+/*               Button                     */
 /********************************************/
 
 
@@ -48,6 +48,11 @@ svg:hover {
   fill: var(--light);
 }
 
+/********************************************/
+/*                General                   */
+/********************************************/
+
+
 html, body {
     height:100vh;
     width:100vw;
@@ -63,45 +68,17 @@ html, body {
   max-width: 600px !important;
 }
 
-.tooltip {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 140px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 150%;
-    left: 50%;
-    margin-left: -75px;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  
-  .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
+/********************************************/
+/*           Password Form                  */
+/********************************************/
 
+.col.password {
+  padding-top: 10px;
+  background-color: var(--black1);
+  margin-left: 10px;
+}
   .password-text {
+    padding-top: 10px;
     background: var(--black1);
   }
 
@@ -111,6 +88,14 @@ html, body {
     // margin: 20px
   }
 
+  #checkBoxError {
+    color: var(--red);
+  }
+  
+  .errorMessage {
+    padding: 10px;
+  }
+  
 
   #charLength {
     padding: 5px 45px 5px 45px; 
@@ -121,7 +106,7 @@ html, body {
   }
 
 /********************************************/
-/*Password Strength*/
+/*           Password Strength              */
 /********************************************/
   
 .strength-rating-bars {
@@ -142,6 +127,8 @@ html, body {
   margin: 5px;
 }
 
-#checkBoxError {
-  color: var(--red);
+.row.justify-content-center {
+  padding: 10px;
+  margin: 10px;
 }
+

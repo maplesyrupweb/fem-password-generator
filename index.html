@@ -13,33 +13,34 @@
   </head>
   <body>
 
-    <!-- Outer container, full page width and height, red border -->
-<div class="container-fluid d-flex justify-content-center align-items-center" style="height:100vh; overflow:hidden; border: 1px solid red">
+    <!-- Outer container, full page width and height -->
+<div class="container-fluid d-flex justify-content-center align-items-center" style="height:100vh; overflow:hidden;">
 
 
 
-  <!-- Inner row, half the width and height, centered, blue border -->
-  <div class="app row text-center d-flex align-items-center" style="overflow:hidden; width:50vw; height:50vh; border: 1px solid blue">
+  <!-- Inner row, half the width and height, centered  -->
+  <div class="app row text-center d-flex align-items-center" style="overflow:hidden; width:50vw; height:50vh;">
   
   
     <div class="container">
-      <div class="password-text1">
+      <div class="password-text">
         <div class="copy-icon">
           <div class="row">
-            <div class="col">
-              <p id="passwordText">Generate a password</p>
+            <div class="col password">
+              <p id="passwordText">P@S$W0RD!</p>
+              
+
             </div>
             <div class="col">
               <span id="copy-password">
                 <img src="./assets/images/icon-copy.svg" alt="Copy password">
               </span>
             </div>
-          </div>
+          </div> <!-- Row --> 
         </div>
       </div>
 
-   
-    
+  
 
       <form class="" id="passwordForm">
 
@@ -87,64 +88,39 @@
           
 
         <div class="strength-box">
-          <span class="strength-label">Strength</span>
-          <div class="strength-rating">
-            <span id="strengthText" class="strength-rating-text"></span>
-            <div class="strength-rating-bars">
-              <div class="row justify-content-center">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+          <div class="row">
+            <div class="col">
+              <span class="strength-label">Strength</span>
+            </div>
+            <div class="col">
+              <div class="strength-rating">
+                <span id="strengthText" class="strength-rating-text"></span>
+                <div class="strength-rating-bars">
+                  <div class="row justify-content-center">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                  </div>
+                </div>
               </div>
-              
             </div>
           </div>
         </div>
       
-    
-
-        <button 
-                class="btn btn-primary col-12"
-                
-                type="submit"
-                >Generate
-        
-        <svg 
-        width="24" 
-        height="24" 
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path 
-          d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
-      </svg>
-    </button>  
-<!-- 
-    <button type="" 
-                class="btn btn-primary col-12"
-                
-                id="gen"
-                onClick="generateRandomPassword()"
-                >Generate
-        
-        <svg 
-        width="24" 
-        height="24" 
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
-      >
-        <path 
-          d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
-      </svg>
-    </button>  
-         -->
-        
-
-        </form>
-      
-      
-    </div>
+        <button class="btn btn-primary col-12"type="submit">Generate
+          <svg 
+          width="24" 
+          height="24" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path 
+            d="m5.106 12 6-6-6-6-1.265 1.265 3.841 3.84H.001v1.79h7.681l-3.841 3.84z"/>
+        </svg>
+      </button>  
+  </form>
+  </div>
     
 
   
