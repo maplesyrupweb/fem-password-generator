@@ -96,6 +96,16 @@ html, body {
     background: var(--black1);
   }
 
+  p#passwordText {
+    font-size: 20px;
+    color: var(--grey);
+    padding-left: 10px;
+}
+
+.col-md-4.passwordStrengthRow {
+  font-size: 30px;
+}
+
   .passwordForm {
     background: var(--black1);
     // padding: 50px;
@@ -150,3 +160,9 @@ html, body {
 .strength-box {
   background-color: var(--black1);
 }
+
+.strength-label {
+  text-transform: uppercase;
+  padding-left: 30px;
+}
+
