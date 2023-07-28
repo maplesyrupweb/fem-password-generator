@@ -86,6 +86,22 @@ html, body {
   margin-bottom: 10px;
 }
 
+.visuallyhidden{
+  position:absolute;
+  clip:rect(1px,1px,1px,1px)
+}
+
+#custom-tooltip {
+    display: none;
+    // background-color:
+    border-radius: 4px;
+    color: var(--green);
+}
+
+.copybutton {
+  display: none;
+}
+
 .col.password {
   padding-top: 10px;
   background-color: var(--black1);
@@ -165,4 +181,5 @@ html, body {
   text-transform: uppercase;
   padding-left: 30px;
 }
+
 

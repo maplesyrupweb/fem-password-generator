@@ -22,6 +22,14 @@
   <div class="app row text-center d-flex align-items-center" style="overflow:hidden; width:50vw; height:50vh;">
   
     <h3 class="title">Password Generator</h3>
+
+    <!-- <div class="button-tooltip-container">
+      <button title="copy share link" type="submit" value="copy" class=copybutton></button>
+      <span id="custom-tooltip">copied!</sapn>
+    </div>
+   -->
+  
+
     <div class="container">
       <div class="password-text">
         
@@ -29,12 +37,14 @@
           <div class="row align-items-center">
             <div class="col password">
               <p id="passwordText">P@S$W0RD!</p>
-              
-
             </div>
             <div class="col">
               <span id="copy-password">
                 <img src="./assets/images/icon-copy.svg" alt="Copy password">
+                <button type="submit" value="copy" class=copybutton></button>
+                <span id="custom-tooltip">copied!</sapn>
+                  <textarea class=visuallyhidden id="box"></textarea>            
+
               </span>
             </div>
           </div> <!-- Row --> 

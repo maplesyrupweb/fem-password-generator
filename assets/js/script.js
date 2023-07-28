@@ -1,6 +1,7 @@
 
 // Password and form
 let passwordForm = document.getElementById("passwordForm");
+let passwordDisplay = document.querySelector('.password');
 let passwordText = document.getElementById('passwordText');
 let code = document.getElementById("password");
 
@@ -112,11 +113,33 @@ const generateRandomPassword = (event) => {
     let text = passwordText.textContent;
     
     navigator.clipboard.writeText(`${text}`);
-
+    
+    console.log(`Password copied to clipboard. The password is: ${text}`);
     console.log(text);
-    alert(`Password copied to clipboard. The password is: ${text}`);
+    displayCopiedText();
+    
+
+    
 });
 
+//------------------------------------------------------//
+//           Display the copied text confirmation       //
+//------------------------------------------------------//
+
+
+function displayCopiedText(){
+
+  var Url = document.getElementById("box");
+  Url.value = window.location.href;
+  Url.focus();
+  Url.select();
+  document.getElementById("custom-tooltip").style.display = "inline";
+  document.execCommand("copy");
+  setTimeout( function() {
+      document.getElementById("custom-tooltip").style.display = "none";
+  }, 1000);
+
+};
 
 //------------------------------------------------------//
 //          Show the input range when using slider      // 
