@@ -1,16 +1,27 @@
-let passwordText = document.getElementById('passwordText');
-let length = document.getElementById("charLength").value;
-let handleCopyClick = document.querySelector('#copy-password');
-let checkBoxes = document.querySelectorAll('input[type=checkbox]');
-let strengthRatingBars = document.querySelectorAll('.bar');
-let numberCheckBox = document.querySelector("input[id=numbers]");
-let code = document.getElementById("password");
-let strengthbar = document.getElementById("meter");
-let passwordForm = document.getElementById("passwordForm");
-let strengthDescription = document.querySelector('.strength-rating-text');
-let elem = document.querySelector('input[type="range"]');
 
+// Password and form
+let passwordForm = document.getElementById("passwordForm");
+let passwordText = document.getElementById('passwordText');
+let code = document.getElementById("password");
+
+// copy password
+let handleCopyClick = document.querySelector('#copy-password');
+
+// length of password
+let length = document.getElementById("charLength").value;
+let characterCount = document.querySelector('.value');
+
+// Checkboxes
+let elem = document.querySelector('input[type="range"]');
+let checkBoxes = document.querySelectorAll('input[type=checkbox]');
+let numberCheckBox = document.querySelector("input[id=numbers]");
 let errorMessage = document.getElementById("checkBoxError")
+
+// password strength
+let strengthRatingBars = document.querySelectorAll('.bar');
+let strengthbar = document.getElementById("meter");
+let strengthDescription = document.querySelector('.strength-rating-text');
+
 
 console.log("passwordForm is: " + passwordForm);
 
@@ -114,6 +125,7 @@ const generateRandomPassword = (event) => {
 
 
 var rangeValue = function(){
+  getSliderValue();
   var newValue = elem.value;
   var target = document.querySelector('.value');
   target.innerHTML = newValue;
@@ -121,6 +133,10 @@ var rangeValue = function(){
 
 elem.addEventListener("input", rangeValue);
 
+
+function getSliderValue() {
+  characterCount.textContent = length;
+}
 
 //------------------------------------------------------//
 //          Form event listeners                        // 
@@ -284,3 +300,6 @@ const calcStrength = (passwordLength, charPoolSize) => {
     return ['Strong', 4];
   }
 }
+
+// On page load, get the input range value
+getSliderValue();
